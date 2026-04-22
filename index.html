@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Una lectura sobre dónde encaja la capa de orquestación en Ruka · Eduba</title>
+<meta name="description" content="Vi que cerraron BIG en Start-Up Chile y que están corriendo la tesis de agentes que operan los datos, no los guardan. Tengo una hipótesis sobre dónde se rompe esa arquitectura en el cliente 25." />
+<link rel="icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top" aria-label="ruka.ai">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="wordmark">ruka<span style="color:var(--indigo)">.</span>ai</span>
+    </a>
+    <div class="nav-meta">
+      <span class="pill">Preparado para el equipo de Ruka</span>
+      <span class="pill">Santiago · LatAm</span>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="sq" aria-hidden="true"></span> Una nota del booth SS49</span>
+      <h1>Una lectura sobre dónde encaja la <span class="accent">capa de orquestación</span> en <span class="hl">Ruka</span>.</h1>
+      <p class="lede">Ruka no es un ERP. Los ERPs guardan datos, Ruka los opera. Esa tesis funciona. La pregunta es cómo se estructura el contexto cuando llegan los clientes 20, 25, 30 y cada uno trae su propio catálogo, sus reglas de categorización y sus excepciones.</p>
+      <div class="meta">
+        <span><span class="bullet" aria-hidden="true"></span> Para Camilo y Benjamin</span>
+        <span><span class="bullet" aria-hidden="true"></span> Conferencia · Booth SS49</span>
+        <span><span class="bullet" aria-hidden="true"></span> Español, con inglés debajo</span>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="hero.png" alt="Ilustración de agentes operando sobre datos existentes" loading="eager" width="800" height="800" />
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">Lo que vimos</span>
+    <h2>Tres cosas que sobresalen.</h2>
+    <div class="lead-card">
+      <p>Matt pasó por el booth y se llevó el problema a casa. Agentes que toman acción sobre la data que ya existe, sobre los ERPs que ya están instalados, en empresas medianas de LatAm donde el margen operativo se fuga en facturas mal clasificadas y variaciones de precio que nadie tiene tiempo de mirar.</p>
+      <div class="stat"><span class="num">01</span><p>Cerraron BIG en <a href="https://startupchile.org/en/blog/these-are-the-startups-selected-for-big-10/" target="_blank" rel="noopener">Start-Up Chile</a> y Somos Lucha en <a href="https://500.co/content/500-lat-am-welcomes-batch-19-startups-to-its-somos-lucha-program" target="_blank" rel="noopener">500 LatAm</a>. Dos señales de capital y red en un año.</p></div>
+      <div class="stat"><span class="num">02</span><p>El producto opera sobre los sistemas existentes. No intenta reemplazar el ERP, lo usa como fuente y hace el trabajo encima.</p></div>
+      <div class="stat"><span class="num">03</span><p>La voz del equipo (Camilo, Benjamin) suena como fundadores técnicos que prefieren construir bien una vez a construir rápido tres veces.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">Cómo pensamos el stack</span>
+    <h2>Eduba divide cada problema operacional en capas.</h2>
+    <p class="muted small">Los equipos que se saltan esta distinción ponen LLMs donde Postgres hace el trabajo más rápido, más barato y con mejores garantías.</p>
+    <div class="layers" role="list">
+      <div class="layer l1" role="listitem">
+        <div class="pct">60%</div>
+        <h3>Código tradicional</h3>
+        <p>Base de datos, queries, integraciones, lógica determinística.</p>
+      </div>
+      <div class="layer l2" role="listitem">
+        <div class="pct">30%</div>
+        <h3>Lógica de reglas</h3>
+        <p>Políticas de aprobación, límites, categorización estable, workflows.</p>
+      </div>
+      <div class="layer l3" role="listitem">
+        <div class="pct">10%</div>
+        <h3>IA genuina</h3>
+        <p>Razonamiento sobre texto ambiguo, excepciones, casos nuevos.</p>
+      </div>
+    </div>
+    <div class="hr" role="presentation"></div>
+    <p>Aplicado a Ruka: el valor del producto no está solo en el agente, está en la arquitectura de contexto que le dice al agente qué cliente es, qué proveedores tiene, qué reglas aplican, y qué pasa cuando aparece una excepción. Esa arquitectura es lo que decide si onboardean al cliente 25 en una tarde o en dos semanas.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid-2">
+    <div class="card">
+      <span class="section-label">Precedente directo</span>
+      <h2>Dónde hemos hecho este trabajo antes.</h2>
+      <p>Con Feeld (CTO Andrew Santus) corrimos un sprint enfocado: workshop, calls de advisory, Organizational Context Architecture y Strategic Operations Framework. Salieron con una capa de contexto documentada que su propio equipo puede editar y auditar.</p>
+      <p class="muted small">Mismo perfil que Ruka: equipo técnico, producto con IA operando sobre data existente, escalando rápido.</p>
+    </div>
+    <div class="card">
+      <span class="section-label">El paper</span>
+      <h2>Interpretable Context Methodology.</h2>
+      <p>Jake publicó "Interpretable Context Methodology: Folder Structure as Agent Architecture," enviado a ACM TiiS. El paper describe cómo organizar el contexto de un agente en capas editables y medibles (L0 a L4). Es el punto de partida si quieren estructurar lo que hoy es config hard-codeada.</p>
+      <p class="small">Repositorio MIT: <a href="https://github.com/RinDig/Interpretable-Context-Methodology-ICM-" target="_blank" rel="noopener">github.com/RinDig/Interpretable-Context-Methodology-ICM-</a></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="section-label">Si la conversación baja de capa</span>
+    <h2>De orquestación a infraestructura.</h2>
+    <div class="card">
+      <p>Eduba trabaja con NLP Logix para el trabajo que se sienta debajo de la capa de orquestación. <a href="https://nlplogix.com" target="_blank" rel="noopener">NLP Logix</a> lleva en machine learning desde 2011 y tiene más de 150 científicos de datos. Si en algún momento Ruka necesita pipeline de datos productivos, evaluación de modelos a escala, o ingeniería de ML más profunda, esa puerta existe.</p>
+      <div class="facts" aria-label="Credibilidad">
+        <div class="fact"><div class="k">Personas entrenadas</div><div class="v">1,500+</div></div>
+        <div class="fact"><div class="k">Horas ahorradas / año</div><div class="v">6,000 a 9,000</div></div>
+        <div class="fact"><div class="k">KPMG UK</div><div class="v">Big Four</div></div>
+        <div class="fact"><div class="k">Adopción a 30 días</div><div class="v">95%</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta">
+      <div class="cta-row">
+        <div class="cta-copy">
+          <span class="section-label">La próxima acción</span>
+          <h2>30 minutos con Matt.</h2>
+          <p>Traigan un workflow específico: por ejemplo, el onboarding de un cliente nuevo o la integración con el próximo ERP de la lista. Hacemos una lectura en vivo de dónde cortaría Eduba las capas y salimos con un memo de una página. Sin pitch de servicios. El objetivo es ver si hay match para una colaboración de methodology o partnership.</p>
+          <p class="contact">
+            <strong>Matt Creamer · CRO, Eduba</strong>
+            <span>Enterprise outreach y relación de cuenta</span>
+          </p>
+        </div>
+        <a class="btn" href="https://calendly.com/thecro-eduba/30min" target="_blank" rel="noopener" aria-label="Agendar 30 minutos con Matt Creamer">
+          Agendar 30 minutos
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>Preparado por Eduba · <a href="https://eduba.io" target="_blank" rel="noopener">eduba.io</a></div>
+    <div class="small">Página construida para el equipo de Ruka.ai. Contenido interno, no comercial.</div>
+  </div>
+</footer>
+
+</body>
+</html>
